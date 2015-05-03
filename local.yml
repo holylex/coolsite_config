@@ -1,0 +1,22 @@
+---
+- hosts: all
+  sudo: yes
+
+  tasks:
+    - name: 1. install Apache
+      apt: name=apache2 state=present
+
+    - name: 2. install git
+      apt: name=git state=present
+
+    - name: 3. delete apache index
+      command: rm -rf /var/www
+
+    - name: 4. set server name
+      lineinfile: dest=/etc/apache2/apache2.conf line="ServerName localhost"
+
+    - name: 5. install coolsite
+      git: repo=https://github.com/holylex/coolsite.git dest=/var/www update=yes force=yes
+
+    - name: 6. start Apache
+      service: name=apache2 state=running enabled=yes
