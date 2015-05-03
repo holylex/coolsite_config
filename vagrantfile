@@ -51,7 +51,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider "docker" do |d|
     d.build_dir = "."
     d.ports = [ "80:80" ]
-    d.ports = [ "22:22" ]
   end
   
   #
