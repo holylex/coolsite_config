@@ -8,18 +8,11 @@
       with_items:
         - nginx
         - git
-        - mercurial
-        - python-pip
-
-    - name: install devcron
-      command: pip install -e hg+https://bitbucket.org/dbenamy/devcron#egg=devcron
 
     - name: delete nginx index
       command: rm -rf /usr/share/nginx/html
 
     - name: install coolsite
       git: repo=https://github.com/holylex/coolsite.git dest=/usr/share/nginx/html update=yes force=yes
-    
-    - name: configura devcron
-      template: src=/etc/ansible/cron.j2 dest=/cron/crontab owner=root group=root mode=0644
+
 
